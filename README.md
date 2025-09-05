@@ -1,2 +1,19 @@
 # Minimal-EPS-Circuit
 This is an attempt to create a minimal eps circuit to simulate battery charging and discharging for a cubesat satellite
+Approach: I first read the challenge pdf and tried to understand it as much as i could on my own, i also took the help of ai tools like perplexity, gemini, and chatgpt to help me undestand the problem and develop a plan on how to tackle it. I first figured out what is supposed to be done and then i started working on how should i proceed.
+First I understood that we have to create a circuit in an online circuit simulation tool and show the battery charging and discharging cycles. It seemed easy at first but as i started working on it, it dawned on me how difficult of a task it is. I asked the ai to tell me the detailed steps on how should i start working on tackling the problem as i had no idea where to start.
+I asked AI to explain me how to use circuitjs1 tool and I also searched on the internet to learn more about this tool
+Resources used:
+Perplexity AI:https://www.perplexity.ai/search/explain-this-pdf-in-more-simpl-EVYkI4UpSBOIVYvkmclZlA
+Chat GPT:https://chatgpt.com/share/68bb1bac-e3cc-8001-8cb7-9ff1c6b14379
+https://lushprojects.com/circuitjs/
+https://www.researchgate.net/figure/Satellite-EPS-schematic_fig1_301555282
+https://www.google.com/search?client=firefox-b-d&sa=X&sca_esv=4a27859b0637b078&sxsrf=AE3TifPr4WYdcuYHpELSS3c8i7RYc_r0nQ:1756986117370&udm=2&fbs=AIIjpHxU7SXXniUZfeShr2fp4giZ1Y6MJ25_tmWITc7uy4KIegmO5mMVANqcM7XWkBOa06dn2D9OWgTLQfUrJnETgD7447LOR4wpV-B2zDe6qAWIoKBW3Wbvl3tRn9fqTVN56o_zzlw5RFRmcWWB6CEWtsPXnXmkLcTXG1vDhU7unfhjDSOaKZCYl_OQ7dH5ZphrL2qmL5myqnLawji-cnIbfjsIJZmRIQ&q=electrical+power+subsystem+for+cubesat+satellite+schematic+and+circuit+diagram&ved=2ahUKEwjDt5qrg7-PAxXLTGwGHfSYOisQtKgLegQIEhAB&biw=1536&bih=703&dpr=1.25#vhid=Db9ThBs-1kaSQM&vssid=mosaic
+https://ieeexplore.ieee.org/document/8849042
+https://www.youtube.com/results?search_query=pwl+source+in+circuitjs1
+https://www.falstad.com/circuit/doc/
+https://www.memphis.edu/et/publications/index.php
+https://www.bait-consulting.com/publications/circuit_simulator_manual.pdf
+https://www.circuitlab.com/blog/2012/04/13/piecewise-linear-and-piecewise-step-sources/
+I was able to create a circuit, but the target output was not achieved. The main hurdle i faced was to simulate a pwl source in circuitjs1 and to simulate timed switches, i was able to create the circuit with normal switches and was getting the correct outputs with manually shifting the switches but i was not able to find a correct and working method for automating this process.i tried to do this by using relay contact and coils but that was not producing the correct voltage and current outputs.Also as i was stuck on this step only I couldn't move ahead and work on figuring out soc proxy in the given time. My biggest mistake was i was too focused on solving the pwl source/timed switch problem externally be it through AI or searching the web, I didn't really explore the tool properly. Had i been more focused on exploring circuitjs1 and its documentation earlier only i believe i would have been able to find the solution to these problems.
+If i was given additional time I'd look at the documentation again properly and i'll learn about all the different tools and test them out to figure out some way to properly simulate a pwl source and timed switches.ALso another solution i found for the pwl source was to use voltage source and set its waveform to pulse and set the max voltage to bus, frequency for a 90min time period and duty cycle 66.7% so that it alternates between max voltage and 0 voltage in 60/30 min cycles, and add a resistor in series with this voltage source so that the power output is 6w. Although i didn't use this and instead used a current source with a relay contact in my circuit. I also tried using transistors to simulate controlled switches but it didn't work either.
